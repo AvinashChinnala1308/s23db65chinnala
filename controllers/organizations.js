@@ -57,8 +57,8 @@ exports.organization_create_post = async function (req, res) {
     document.website = req.body.website;
 
     try {
-        let results = await document.save(); 
-        res.send(results);
+        let result = await document.save(); 
+        res.send(result);
     } catch (err) {
         res.status(500);
         res.send(`{"error": ${err}}`);
