@@ -41,3 +41,27 @@ exports.organizations_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 }
+
+
+var Organization = require('../models/organizations');
+
+exports.organization_create_post = async function (req, res) {
+    console.log(req.body);
+    let document = new Organization(); 
+    
+    document.organizationName = req.body.organizationName;
+    document.location = req.body.location; 
+    document.industry = req.body.industry;
+    document.numberOfEmployees = req.body.numberOfEmployees; 
+    document.revenue = req.body.revenue; 
+    document.website = req.body.website;
+
+    try {
+        let results = await document.save(); 
+        res.send(results);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
