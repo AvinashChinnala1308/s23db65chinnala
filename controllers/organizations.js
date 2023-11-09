@@ -19,3 +19,14 @@ exports.organization_delete = function (req, res) {
 exports.organization_update_put = function (req, res) {
     res.send('NOT IMPLEMENTED: Organization update PUT ' + req.params.id);
 };
+
+
+exports.organization_list = async function (req, res) {
+    try {
+        const Organizations = await Organization.find();
+        res.send(Organizations);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
