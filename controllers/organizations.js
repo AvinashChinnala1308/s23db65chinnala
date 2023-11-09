@@ -21,6 +21,7 @@ exports.organization_update_put = function (req, res) {
 };
 
 
+
 exports.organization_list = async function (req, res) {
     try {
         const Organizations = await Organization.find();
@@ -43,11 +44,10 @@ exports.organizations_view_all_Page = async function (req, res) {
 }
 
 
-var Organization = require('../models/organizations');
 
 exports.organization_create_post = async function (req, res) {
     console.log(req.body);
-    let document = new Organization(); 
+    let document = new organizations(); 
     
     document.organizationName = req.body.organizationName;
     document.location = req.body.location; 
