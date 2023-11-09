@@ -1,5 +1,7 @@
 
 const express = require('express');
+const organization_controller= require('../controllers/organizations');
+
 const router = express.Router();
 
 const organizations = [
@@ -19,7 +21,7 @@ const organizations = [
     website: 'https://www.wipro.com/' },
   { 
     organizationName: 'Apps Associates',
-    location: 'Uppal, Inida',
+    location: 'Uppal, India',
     industry: 'Technology',
     numberOfEmployees: 5000,
     revenue: 7000000,
@@ -38,4 +40,8 @@ router.get('/', (req, res) => {
     res.render('organizations', { title: 'Search Results - Organizations', a: organizations });
   });
   
+
+ router.get('/', organization_controller.organizations_view_all_Page);
+
+
   module.exports = router;

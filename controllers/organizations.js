@@ -30,3 +30,14 @@ exports.organization_list = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+
+exports.organizations_view_all_Page = async function (req, res) {
+    try {
+        const theOrganizations = await Organization.find();
+        res.render('organizations', { title: 'Organization Search Results', results: theOrganizations });
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+}
