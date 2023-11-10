@@ -23,9 +23,24 @@ exports.organization_delete = function (req, res) {
     res.send('NOT IMPLEMENTED: Organization delete DELETE ' + req.params.id);
 };
 
-exports.organization_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: Organization update PUT ' + req.params.id);
+exports.organization_update_put = async function (req, res) {
+    try {
+        let toUpdate = await Organization.findById(req.params.id);
+
+        if (req.body.organizationName)
+            toUpdate.organizationName = req.body.organizationName;
+        if (req.body.location) toUpdate.location = req.body.location;
+        if (req.body.industry) toUpdate.industry = req.body.industry;
+        if (req.body.numberOfEmployees) toUpdate.numberOfEmployees = req.body.numberOfEmployees;
+        if (req.body.revenue) toUpdate.revenue = req.body.revenue;
+        let result = await toUpdate.save();
+        console.log("Success " + result);
+        res.send(result);
+    } catch (err) {
+        res.status(500).send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+    }
 };
+
 
 
 
