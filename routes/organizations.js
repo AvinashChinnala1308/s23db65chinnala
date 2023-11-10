@@ -7,5 +7,6 @@ const router = express.Router();
 
  router.get('/', organization_controller.organizations_view_all_Page);
 
+ router.get('/organizations/:id', organization_controller.organization_detail);
 
   module.exports = router;
