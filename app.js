@@ -121,18 +121,18 @@ async function recreateDB() {
   });
 
 
-  let e4 = new organizations({ 
-    organizationName: 'Epam',
-    location: 'Inida',
-    industry: 'MI',
-    numberOfEmployees: 900,
-    revenue: 3000000,
-    website: 'https://www.epam.com/'});
-  e4.save().then(doc => {
-    console.log("Fourth object saved")
-  }).catch(err => {
-    console.error(err)
-  });
+  // let e4 = new organizations({ 
+  //   organizationName: 'Epam',
+  //   location: 'Inida',
+  //   industry: 'MI',
+  //   numberOfEmployees: 900,
+  //   revenue: 3000000,
+  //   website: 'https://www.epam.com/'});
+  // e4.save().then(doc => {
+  //   console.log("Fourth object saved")
+  // }).catch(err => {
+  //   console.error(err)
+  // });
 }
 
 let reseed = true;

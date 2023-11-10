@@ -36,6 +36,7 @@ exports.organization_list = async function (req, res) {
 exports.organizations_view_all_Page = async function (req, res) {
     try {
         const theOrganizations = await Organization.find();
+        console.log(theOrganizations);
         res.render('organizations', { title: 'Organization Search Results', results: theOrganizations });
     } catch (err) {
         res.status(500);
@@ -47,7 +48,7 @@ exports.organizations_view_all_Page = async function (req, res) {
 
 exports.organization_create_post = async function (req, res) {
     console.log(req.body);
-    let document = new organizations(); 
+    let document = new Organization(); 
     
     document.organizationName = req.body.organizationName;
     document.location = req.body.location; 

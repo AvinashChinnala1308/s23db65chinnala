@@ -4,7 +4,7 @@ block content
   h1= title
   div(class="container-fluid")
     div(class="row")
-      each organization, index in a
+      each organization, index in results
         div(class="col-sm-2")
           h6 Organization #{index + 1}
           p Organization Name: #{organization.organizationName}
