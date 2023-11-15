@@ -114,4 +114,13 @@ exports.organization_delete = async function (req, res) {
         }
         };
 
-
+        exports.organization_create_page = function(req, res) {
+            console.log("create view")
+            try{
+            res.render('Organizationcreate', { title: 'Organization Create'});
+            }
+            catch(err){
+            res.status(500)
+            res.send(`{'error': '${err}'}`);
+            }
+        };

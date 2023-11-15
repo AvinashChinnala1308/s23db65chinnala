@@ -1,0 +1,37 @@
+extends layout
+block content
+  h1= title
+  form(id='OrganizationForm', action="/resource/organizations", method="POST")
+    div.form-group
+      label(for='organizationName') Organization Name
+      input#organizationName(type='text', name='organizationName')
+    div.form-group
+      label(for='location') Location
+      input#location(type='text', name='location')
+    div.form-group
+      label(for='industry') Industry
+      input#industry(type='text', name='industry')
+    div.form-group
+      label(for='numberOfEmployees') Number of Employees
+      input#numberOfEmployees(type='number', name='numberOfEmployees')
+    div.form-group
+      label(for='revenue') Revenue
+      input#revenue(type='number', name='revenue')
+    div.form-group
+      label(for='website') Website
+      input#website(type='text', name='website')
+    input(type="submit")
+    script.
+      document.forms['OrganizationForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target))
+        }).then((resp) => {
+          return resp.json();
+        }).then((body) => {
+          alert("Save succeeded");
+        }).catch((error) => {
+          alert("Save failed " + error);
+        });
+      });
