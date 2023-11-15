@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  h1= title
+  - let organizationid = toShow._id
+  - let organizationName = toShow.organizationName
+  - let location = toShow.location
+  - let industry = toShow.industry
+  - let numberOfEmployees = toShow.numberOfEmployees
+  - let revenue = toShow.revenue
+  - let website = toShow.website
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{organizationid}
+
+  - let actionid = "/resource/organizations/" + organizationid 
+  form(id='OrganizationForm', action= actionid, method="PUT")
+    div.form-group
+      label(for='organizationName') Organization Name
+      input#organizationName(type='text', name='organizationName', value= organizationName )
+    div.form-group
+      label(for='location') Location
+      input#location(type='text', name='location', value= location )
+    div.form-group
+      label(for='industry') Industry
+      input#industry(type='text', name='industry', value= industry )
+    div.form-group
+      label(for='numberOfEmployees') Number of Employees
+      input#numberOfEmployees(type='number', name='numberOfEmployees', value= numberOfEmployees )
+    div.form-group
+      label(for='revenue') Revenue
+      input#revenue(type='number', name='revenue', value= revenue )
+    div.form-group
+      label(for='website') Website
+      input#website(type='text', name='website', value= website )
+    input(type="submit")
+
+    script.
+      document.forms['OrganizationForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) 
+        }).then((resp) => {
+          return resp.json(); 
+        }).then((body) => {
+          alert("Update succeeded");
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error );
+        });
+      });
