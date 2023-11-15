@@ -1,3 +1,4 @@
+const organizations = require('../models/organizations');
 var Organization = require('../models/organizations');
 
 exports.organization_list = function (req, res) {
@@ -99,4 +100,18 @@ exports.organization_delete = async function (req, res) {
         res.send(`{"error": Error deleting ${err}}`);
     }
 };
+
+    exports.organizations_view_one_Page = async function(req, res) {
+        console.log("single view for id " + req.query.id)
+        try{
+        result = await Organization.findById( req.query.id)
+        res.render('organizationsdetail',
+        { title: 'Organization Detail', toShow: result });
+        }
+        catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+        }
+        };
+
 
