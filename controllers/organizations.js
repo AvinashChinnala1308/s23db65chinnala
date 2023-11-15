@@ -136,3 +136,15 @@ exports.organization_delete = async function (req, res) {
                 res.send(`{'error': '${err}'}`);
             }
         };
+
+        exports.organization_delete_Page = async function(req, res) {
+            console.log("Delete view for id " + req.query.id)
+            try{
+            result = await Organization.findById(req.query.id)
+            res.render('organizationdelete', { title: 'Organization Delete', toShow: result });
+            }
+            catch(err){
+            res.status(500)
+            res.send(`{'error': '${err}'}`);
+            }
+           };

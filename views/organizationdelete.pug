@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let organizationName = toShow.organizationName
+    - let location = toShow.location
+    - let industry = toShow.industry
+    - let numberOfEmployees = toShow.numberOfEmployees
+    - let revenue = toShow.revenue
+    - let website = toShow.website
+    - let actionid = "/resource/organizations/" + toShow._id
+    script.
+      let actionid = "#{actionid}"
+
+    div
+      div.row
+        div(class='OrganizationAttr mr-3') Organization Name is:
+        div #{organizationName}
+      div.row
+        div(class='OrganizationAttr mr-3') Location is:
+        div #{location}
+      div.row
+        div(class='OrganizationAttr mr-3') Industry is:
+        div #{industry}
+      div.row
+        div(class='OrganizationAttr mr-3') Number of Employees is:
+        div #{numberOfEmployees}
+      div.row
+        div(class='OrganizationAttr mr-3') Revenue is:
+        div #{revenue}
+      div.row
+        div(class='OrganizationAttr mr-3') Website is:
+        div #{website}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      window.location.href='/organization'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete");
+      fetch(actionid, {
+        method: 'DELETE'
+      }).then((resp) => {
+        return resp.json();
+      }).then((body) => {
+        alert("Delete succeeded");
+        window.location.href='/organization';
+      }).catch((error) => {
+        alert("Delete failed " + error);
+      });
+    }

@@ -12,4 +12,6 @@ router.get('/create', organization_controller.organization_create_page)
 
 router.get('/update', organization_controller.organization_update_page);
 
+router.get('/delete', organization_controller.organization_delete_Page);
+
 module.exports = router;
