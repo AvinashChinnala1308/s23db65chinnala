@@ -8,6 +8,10 @@ a {
   width: 120px;
 }
 
+button{
+  margin: 5px;
+}
+
 
 
 body {
@@ -46,3 +50,5 @@ input[type="submit"] {
   color: #fff;
   cursor: pointer;
 }
+
+
