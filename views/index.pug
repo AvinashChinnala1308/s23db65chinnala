@@ -1,14 +1,24 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Welcome to my account and you are looking into my browser and I love movies
+//-    div#faster Increase the speed
+//-   button(type="button", class="btn btn-secondary",onclick="goFaster()") Press Me
+//-   br
+//-   br
+//-   br
+//-   p Organization class link
+//-   a(href="/organizations") Search Results of Organization Class
+
 extends layout
-
 block content
-  h1= title
-  p Welcome to my account and you are looking into my browser and I love movies
-   div#faster Increase the speed
-  button(type="button", class="btn btn-secondary",onclick="goFaster()") Press Me
-  br
-  br
-  br
-  p Organization class link
-  a(href="/organizations") Search Results of Organization Class
- 
-
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/organizations") Take me to Organizations
+    br
+    a(href="/logout") Logout
