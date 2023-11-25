@@ -4,8 +4,9 @@ block content
   h1= title
   div(class="container-fluid")
     div(class="row")
+      a(class="btn btn-success" href="/organizations/create") Create
+
       each organization, index in results
-        
         div(class="col-sm-2")
           h6 Organization #{index + 1}
           p Organization Name: #{organization.organizationName}
@@ -14,9 +15,10 @@ block content
           p Number of Employees: #{organization.numberOfEmployees}
           p Revenue: #{organization.revenue}
           p Website: #{organization.website}
-          div(onclick=`buy(${index})`, class="btn btn-primary") Buy
           
           button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/organizations/update?id=${organization._id}\")`) Update
+          a(class="btn btn-danger" href=`/organizations/delete?id=${organization._id}`) Delete
+          a(class="btn btn-dark" href=`/organizations/detail?id=${organization._id}`) Details
 
   script.
     function buy(p) {
